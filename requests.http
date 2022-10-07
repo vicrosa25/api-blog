@@ -44,3 +44,7 @@ Content-Type: application/json
   "email": "Description test",
   "body": "Content test"
 }
+
+
+### Get all comments from a post
+GET http://localhost:8001/api/posts/1/comments

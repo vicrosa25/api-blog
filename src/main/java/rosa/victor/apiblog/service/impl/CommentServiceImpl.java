@@ -1,5 +1,8 @@
 package rosa.victor.apiblog.service.impl;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import rosa.victor.apiblog.dtos.CommentDto;
@@ -38,6 +41,23 @@ public class CommentServiceImpl implements CommentService {
     Comment savedComment = commentRespository.save(comment);
     return mapToDto(savedComment);
   }
+
+
+  @Override
+  public Set<CommentDto> getAllComments(long postId) {
+    // Fetch post by postId
+    Post post = postRepository.findById(postId)
+        .orElseThrow(() -> new ResourceNotFoundException(
+            "Post", "id", postId));
+
+    return post.getComments().stream()
+      .map(comment -> mapToDto(comment))
+      .collect(Collectors.toSet());
+
+  }
+
+
+
 
   // Convert PostDto to Post
   private Comment mapToComment(CommentDto commentDto) {
