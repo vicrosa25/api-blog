@@ -33,3 +33,14 @@ Content-Type: application/json
 
 ### Delete Post by Id
 DELETE http://localhost:8001/api/posts/...
+
+
+### Create a Comment
+POST http://localhost:8001/api/posts/1/comments
+Content-Type: application/json
+
+{
+  "name": "Comment test 1",
+  "email": "Description test",
+  "body": "Content test"
+}
